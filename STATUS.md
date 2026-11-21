@@ -44,8 +44,9 @@ Hugging Face (whisper model download).
       Copy the Client ID (public, fine to share). Then say "twitch app ready". The client
       secret goes only into the secure credential form, never chat.
 - [ ] Time zone + preferred day for the weekly outlier rerun (step 2) and daily clip pull (step 4).
-- [ ] Record the gameplay listed in `script.md`, upload it to the repo's `footage/` folder
-      or share a link.
+- [ ] Record the gameplay listed in `script.md` and share a download link (e.g. an unlisted
+      YouTube upload or a cloud-drive link). Video files are too large for git; the agent
+      downloads them into the ignored `footage/` folder.
 - [ ] Footage source decision (rule 5: credit is not permission).
 
 ## Awaiting approval
