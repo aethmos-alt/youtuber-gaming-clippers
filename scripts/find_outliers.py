@@ -5,11 +5,13 @@ Reads data/channels_approved.csv (column: url). Writes data/outliers.csv and pri
 what changed since the previous run (kept in data/outliers_prev.csv).
 
 Outlier = a video whose views are >= OUTLIER_X times that channel's median for the
-same format (long-form vs Shorts), across its last N uploads.
+same format (long-form vs Shorts), across its last N uploads. Only GTA titles are kept;
+the median uses every upload so it reflects the channel's usual views.
 Usage: python3 scripts/find_outliers.py
 """
 import csv
 import json
+import re
 import shutil
 import statistics
 import subprocess
@@ -25,6 +27,7 @@ PREV = DATA / "outliers_prev.csv"
 N = 30
 OUTLIER_X = 3.0
 MIN_VIEWS = 10_000
+GTA = re.compile(r"\bgta\b|grand theft auto|vice city|leonida|lucia|jason", re.I)
 
 
 def listing(url, tab):
@@ -43,7 +46,7 @@ def channel_outliers(row):
         med = statistics.median(v["view_count"] for v in vids)
         for v in vids:
             ratio = v["view_count"] / med if med else 0
-            if ratio >= OUTLIER_X and v["view_count"] >= MIN_VIEWS:
+            if ratio >= OUTLIER_X and v["view_count"] >= MIN_VIEWS and GTA.search(v.get("title") or ""):
                 thumbs = v.get("thumbnails") or []
                 rows.append({
                     "channel": name, "format": fmt,

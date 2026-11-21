@@ -3,3 +3,4 @@ out/
 *.mkv
 *.webm
 __pycache__/
+data/thumbs/
