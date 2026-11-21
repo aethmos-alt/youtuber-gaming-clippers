@@ -4,3 +4,4 @@ out/
 *.webm
 __pycache__/
 data/thumbs/
+footage/
