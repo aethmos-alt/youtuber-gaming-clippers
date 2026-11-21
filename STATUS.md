@@ -2,7 +2,7 @@
 
 Read `RULES.md` first. Update this file at the end of every run.
 
-_Last updated: 2026-11-21 (steps 2-8 run)_
+_Last updated: 2026-11-21 (Google API setup started)_
 
 ## Pipeline progress (the 9-step plan)
 
@@ -43,6 +43,11 @@ Hugging Face (whisper model download).
       Application", category "Application Integration", OAuth redirect `http://localhost`.
       Copy the Client ID (public, fine to share). Then say "twitch app ready". The client
       secret goes only into the secure credential form, never chat.
+- [ ] **YouTube Data API key (free):** create in Google Cloud Console, then add it in this
+      environment's settings as a Network secret: host `www.googleapis.com`, header
+      `X-Goog-Api-Key`. Never in chat. Then start a new session and the agent switches
+      `find_outliers.py` to the API (adds upload dates, more reliable view counts).
+      YouTube uploads stay manual: Google's short-lived upload tokens can't be stored here.
 - [ ] Time zone + preferred day for the weekly outlier rerun (step 2) and daily clip pull (step 4).
 - [ ] Record the gameplay listed in `script.md` and share a download link (e.g. an unlisted
       YouTube upload or a cloud-drive link). Video files are too large for git; the agent
